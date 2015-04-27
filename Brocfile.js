@@ -4,8 +4,8 @@ var mergeTrees = require('broccoli-merge-trees');
 
 var styles = pickFiles('styles', { srcDir: '/', destDir: 'assets' });
 
-var sourceTrees = [styles];
+var siteCss = compileSass([styles], 'assets/global.scss', 'assets/global.css');
 
-var siteCss = compileSass(sourceTrees, 'assets/global.scss', 'assets/global.css');
+var publicFiles = 'public';
 
-module.exports = siteCss;
+module.exports = mergeTrees([siteCss, publicFiles]);
